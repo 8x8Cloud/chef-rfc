@@ -140,10 +140,10 @@ The `docker?` helper has already been merged as of Chef 12.11.18
 
 In addition to the chef-sugar helpers, higher level helpers will be added:
 
-`rpm_based?` -- this will include the `platform_family` of `rhel`, `fedora`, `amazon`, and `suse`
-`fedora_based?` -- this will include the `platform_family` of `rhel`, `fedora`, and `amazon`
-`solaris_based?` -- this will include the `platform` of `openindiana`, `opensolaris`, `nexentacore`, `omnios`, `solaris2`, and `smartos`
-`bsd_based?` -- this will include the `platform` of `freebsd`, `netbsd`, `openbsd`, and `dragonflybsd`
+* `rpm_based?` -- this will include the `platform_family` of `rhel`, `fedora`, `amazon`, and `suse`
+* `fedora_based?` -- this will include the `platform_family` of `rhel`, `fedora`, and `amazon`
+* `solaris_based?` -- this will include the `platform` of `openindiana`, `opensolaris`, `nexentacore`, `omnios`, `solaris2`, and `smartos`
+* `bsd_based?` -- this will include the `platform` of `freebsd`, `netbsd`, `openbsd`, and `dragonflybsd`
 
 Generally these helpers are designed to fit actual needs, not theoretical needs.  As an example, there exist families of gentoo-based and
 arch-based systems but ohai does not support any of those other than the parent distro, so we do not define those helpers.
