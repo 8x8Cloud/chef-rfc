@@ -126,6 +126,9 @@ Similarly we include the existing chef-sugar helpers:
 * `windows?`
 * `wrlinux?`
 
+Where the chef-sugar helper is different from the name of the `platform_family` the name from ohai will also be added and
+the full list from ohai data will be filled out.
+
 ### Additional Helpers From Chef-Sugar
 
 These three helper will also be included:
