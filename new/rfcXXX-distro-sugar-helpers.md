@@ -1,12 +1,11 @@
 ---
 RFC: unassigned
-Title: My Title
-Author: Alan Smithee <asmithee@example.com>
+Title: Chef Sugar Platform Matchers in Core Chef
+Author: Lamont Granquist <lamont@chef.io>
 Status: Draft
-Type: <Standards Track, Informational, Process>
-<Replaces: RFCxxx>
-<Tracking:>
-<  - https://github.com/chef/chef/issues/X>
+Type: Standards Track
+Tracking:
+  - https://github.com/chef/chef/pulls/< FIXME: TBD VERY SOON >
 ---
 
 # Title
