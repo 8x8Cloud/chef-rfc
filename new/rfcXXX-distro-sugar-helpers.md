@@ -170,6 +170,9 @@ The `redhat_based?` helper is defined around the distro standards of the RedHat 
 are included along with straight forwards derivatives of fedora like pidora.  Amazon is not included due to deviations amazon has made in
 application support (different php, perl, etc versions and packaging, etc).
 
+The `rpm_based?` distro does not include AIX because while RPM has been ported to AIX, that O/S is not based around rpm, and again that is
+a substantially less useful construct.  Use `rpm_based?` with `aix?` to solve that case.
+
 ### Removal from chef-sugar
 
 Once Chef 12.x has dropped off of the chef-sugar support matrix and all supported versions of chef-client have these helper methods in
