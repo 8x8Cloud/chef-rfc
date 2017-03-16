@@ -44,6 +44,16 @@ helper methods.
 The chef-sugar helper methods have also found widespread adoption in the community and its
 time to pull them into core.
 
+## Scope
+
+This RFC covers only the `platform` and `platform_family` helpers in chef-sugar along with
+some other badly needed helpers.  The `platform_version` style of helpers (`debian_before_squeeze`)
+are out of scope.  The limiting of scope has no implications as to if we eventually want more
+of chef-sugar into core or not (we certainly do want more of it in core), and is solely to limit
+the scope of this work and the discussion.  There do exist pieces of chef-sugar (like the
+`method_missing` style of attribute syntax) that we explicitly do not want, and each piece of
+chef-sugar needs to be assessed on its own merits.
+
 ## Specification
 
 We will pull in most of the Architecture, Platform and Platform Family helpers from chef-sugar
@@ -64,9 +74,6 @@ in widespread use, it is important to not modify their meaning.
 * `s390x`?
 
 ### Platform Helpers
-
-We will not be pulling in the `debian_before_squeeze?` style of `platform` and `platform_version` helpers
-at this time (simply limiting the scope, not a statement that we do or do not eventually want them).
 
 The complete list of platform helpers is long, examples:
 
@@ -143,12 +150,30 @@ The `docker?` helper has already been merged as of Chef 12.11.18
 In addition to the chef-sugar helpers, higher level helpers will be added:
 
 * `rpm_based?` -- this will include the `platform_family` of `rhel`, `fedora`, `amazon`, and `suse`
-* `fedora_based?` -- this will include the `platform_family` of `rhel`, `fedora`, and `amazon`
+* `fedora_derived?` -- this will include the `platform_family` of `rhel`, `fedora`, and `amazon`
+* `redhat_based?` -- this will include the `platform_family` of `rhel` and `fedora`
 * `solaris_based?` -- this will include the `platform` of `openindiana`, `opensolaris`, `nexentacore`, `omnios`, `solaris2`, and `smartos`
 * `bsd_based?` -- this will include the `platform` of `freebsd`, `netbsd`, `openbsd`, and `dragonflybsd`
 
 Generally these helpers are designed to fit actual needs, not theoretical needs.  As an example, there exist families of gentoo-based and
 arch-based systems but ohai does not support any of those other than the parent distro, so we do not define those helpers.
+
+While `mac_os_x` historically derives from BSD systems, including it in the `bsd_based?` helper has no utility to anyone, so it is not
+included.  In general, these APIs are not derived from solely historical arguments (and explicitly do not match their wikipedia definitions).
+
+The `fedora_derived?` helper might be more usefully defined as RPM-based-distros-that-aren't-SuSE which is a useful category for systems
+management, but not application management.  For the actual historical overarching set of distros there is `rpm_based?` and for the more
+specific family of systems which are compatible with only RedHat-as-a-company there exists `redhat_based?`.  SuSE itself is significantly
+different (redhat has never used YaST or zypper and never will).
+
+The `redhat_based?` helper is defined around the distro standards of the RedHat company itself.  Recompiled RHEL platforms (OEL, Scientific)
+are included along with straight forwards derivatives of fedora like pidora.  Amazon is not included due to deviations amazon has made in
+application support (different php, perl, etc versions and packaging, etc).
+
+### Removal from chef-sugar
+
+Once Chef 12.x has dropped off of the chef-sugar support matrix and all supported versions of chef-client have these helper methods in
+them, then the code for these helpers will be removed from chef-sugar.  This should be a transparent change to users.
 
 ## Copyright
 
